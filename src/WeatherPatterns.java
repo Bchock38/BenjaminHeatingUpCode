@@ -16,7 +16,22 @@ public class WeatherPatterns {
      */
     public static int longestWarmingTrend(int[] temperatures) {
         // TODO: Write your code here!
+    int currentBigNum;
+    int trend = 1;
+    currentBigNum = temperatures[0];
+    int orgNum = temperatures[0];
+    for (int i = 1; i < temperatures.length; i++){
+        if (currentBigNum < temperatures[i]){
+            trend++;
+            currentBigNum = temperatures[i];
+        }
+        else if (orgNum > temperatures[i] && temperatures.length - i > trend){
+            orgNum = temperatures[i];
+            currentBigNum = temperatures[i];
+            trend = 1;
+        }
+    }
 
-        return 0;
+        return trend;
     }
 }
