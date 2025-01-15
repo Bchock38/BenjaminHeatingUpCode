@@ -20,18 +20,34 @@ public class WeatherPatterns {
     int trend = 1;
     currentBigNum = temperatures[0];
     int orgNum = temperatures[0];
+    int extraTrend = 0;
     for (int i = 1; i < temperatures.length; i++){
         if (currentBigNum < temperatures[i]){
             trend++;
             currentBigNum = temperatures[i];
         }
         else if (orgNum > temperatures[i] && temperatures.length - i > trend){
-            orgNum = temperatures[i];
-            currentBigNum = temperatures[i];
-            trend = 1;
+            extraTrend = longest(temperatures, i);
+            }
         }
+
+    if (extraTrend > trend) {
+        trend = extraTrend;
     }
 
+        return trend;
+    }
+
+    public static int longest (int[] temperatures, int start){
+        int currentBigNum;
+        int trend = 1;
+        currentBigNum = temperatures[start];
+        for (int i = start; i < temperatures.length; i++){
+            if (currentBigNum < temperatures[i]){
+                trend++;
+                currentBigNum = temperatures[i];
+            }
+        }
         return trend;
     }
 }
